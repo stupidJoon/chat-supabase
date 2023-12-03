@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase } from './supabaseClient';
+import { Link } from 'react-router-dom';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -18,13 +19,16 @@ function App() {
     console.log(data.user);
   }
 
-  if (!user) {
-    return <p>You Are Not Authenticated</p>;
-  }
-
   return (
     <>
-      <p>email: {user.email}</p>
+      {(user) ? (
+        <p>email: {user.email}</p>
+      ) : (
+        <p>You Are Not Authenticated</p>
+      )}
+      <Link to='/auth'>/auth</Link>
+      <br />
+      <Link to='/channels'>/channels</Link>
     </>
   );
 }
