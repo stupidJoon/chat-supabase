@@ -25,7 +25,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 737097ad55e92e6e553b57d630570a7f
           projectName: chat-supabase
-          directory: /dist
+          directory: dist
           # Optional: Enable this if you want to have GitHub Deployments triggered
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           # Optional: Switch what branch you are publishing to.
