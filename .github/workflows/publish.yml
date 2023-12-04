@@ -1,11 +1,15 @@
-on: [push, workflow_dispatch]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
+    # permissions:
+    #   contents: read
+    #   deployments: write
     name: Publish to Cloudflare Pages
     steps:
       - name: Checkout
