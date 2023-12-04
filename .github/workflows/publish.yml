@@ -1,37 +1,37 @@
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-    name: Publish to Cloudflare Pages
-    steps:
-      - uses: actions/checkout@v3
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: read
+#       deployments: write
+#     name: Publish to Cloudflare Pages
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v4
+#       - uses: actions/setup-node@v4
         
-      - run: |
-          npm ci
-          npm run build
+#       - run: |
+#           npm ci
+#           npm run build
 
-      - uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 737097ad55e92e6e553b57d630570a7f
-          projectName: chat-supabase
-          directory: dist
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          # Optional: Switch what branch you are publishing to.
-          # By default this will be the branch which triggered this workflow
-          # branch: main
-          # Optional: Change the working directory
-          # workingDirectory: my-site
-          # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-          # wranglerVersion: '3'
+#       - uses: cloudflare/pages-action@v1
+#         with:
+#           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+#           accountId: 737097ad55e92e6e553b57d630570a7f
+#           projectName: chat-supabase
+#           directory: dist
+#           # Optional: Enable this if you want to have GitHub Deployments triggered
+#           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+#           # Optional: Switch what branch you are publishing to.
+#           # By default this will be the branch which triggered this workflow
+#           # branch: main
+#           # Optional: Change the working directory
+#           # workingDirectory: my-site
+#           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
+#           # wranglerVersion: '3'
