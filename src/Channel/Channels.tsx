@@ -25,6 +25,17 @@ function Channels({ style, channelID: currentChannelID, setChannelID: setCurrent
     setChannels(data ?? []);
   };
 
+  const addChannel = async () => {
+    const title = prompt('채널 이름을 입력해주세요');
+    if (title === null) return;
+
+    const { error } = await supabase.from('channels').insert({ title });
+
+    if (error) throw error;
+
+    await getChannels();
+  };
+
   useEffect(() => {
     getChannels();
   }, []);
@@ -34,6 +45,7 @@ function Channels({ style, channelID: currentChannelID, setChannelID: setCurrent
       {channels.map(({ id, title }) => (
         <p css={channelCSS(id)} key={id} onClick={() => setCurrentChannelID(id)}>{title}</p>
       ))}
+      <p onClick={addChannel}>+</p>
     </div>
   );
 }
